@@ -231,6 +231,7 @@ namespace FNFR2
 
            mySet.AddPair("Sample1", "Example1");
            mySet.AddPair("Sample2", "Example2");
+           mySet.AddPair("Sample3", "Example3");
 
            return mySet;
         }
