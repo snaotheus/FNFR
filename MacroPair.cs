@@ -70,6 +70,11 @@ namespace FNFR2
          xwriter.WriteEndElement();
       }
 
+      public override string ToString()
+      {
+         return "Replace " + FindString + " with " + ReplaceString;
+      }
+
       public static bool IsAMacroPairNode(XmlReader xreader)
       {
          return xreader.LocalName == XML_NODE_PAIR_LOCALNAME;

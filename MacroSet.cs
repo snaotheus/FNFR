@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Xml;
 namespace FNFR2
 {
    public class MacroSet
    {
+      public static string XML_NODE_SET_LOCALNAME = "MacroSet";
+
       private Dictionary<int, MacroPair> DataStore;
       public int count { get { return DataStore.Count; } }
 
@@ -36,6 +38,18 @@ namespace FNFR2
          }
 
          return DataStore[i];
+      }
+
+      public void ToXML(XmlWriter xw)
+      {
+         xw.WriteStartElement(XML_NODE_SET_LOCALNAME);
+
+         foreach(KeyValuePair<int,MacroPair> kvp in DataStore)
+         {
+            kvp.Value.ToXML(xw);
+         }
+         xw.WriteEndElement();
+
       }
    }
 }

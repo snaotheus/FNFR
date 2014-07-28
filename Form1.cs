@@ -13,12 +13,18 @@ namespace FNFR2
 {
     public partial class Form1 : Form
     {
+        public MacroSet myset;
         private FileSearchThing MySearch = new FileSearchThing();
         private double OpTime = 0; // I could have been fancy and put this sort of information in the FileSearchThing.
 
         public Form1()
         {
             InitializeComponent();
+            myset = new MacroSet();
+            myset.AddPair("Sample1", "Example1");
+            myset.AddPair("Sample2", "Example2");
+            myset.AddPair("Sample3", "Example3");
+
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -225,15 +231,7 @@ namespace FNFR2
 
         private MacroSet GetMacroSet()
         {
-
-           // Hardcoded right now
-           MacroSet mySet = new MacroSet();
-
-           mySet.AddPair("Sample1", "Example1");
-           mySet.AddPair("Sample2", "Example2");
-           mySet.AddPair("Sample3", "Example3");
-
-           return mySet;
+           return myset;
         }
 
 
