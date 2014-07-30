@@ -70,7 +70,17 @@ namespace FNFR2
 
       public override string ToString()
       {
-         return "Replace " + FindString + " with " + ReplaceString;
+         return ToString(" replaced with ");
+      }
+
+      /// <summary>
+      /// Prints out the pair separated by the separator.
+      /// </summary>
+      /// <param name="Separator">String to put between the pair. Default is " replaced with "</param>
+      /// <returns>Find string (separator) Replacement string</separator></returns>
+      public string ToString(string Separator)
+      {
+         return FindString + Separator + ReplaceString; 
       }
 
       public static bool IsAMacroPairNode(XmlReader xreader)

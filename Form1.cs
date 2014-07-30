@@ -238,6 +238,11 @@ namespace FNFR2
            return myset;
         }
 
+        private void EditMacroButton_Click(object sender, EventArgs e)
+        {
+           MessageBox.Show(myset.ToString());
+        }
+
 
 
 

@@ -59,6 +59,7 @@
          this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
          this.PreviewReplaceButton = new System.Windows.Forms.Button();
          this.MacroButton = new System.Windows.Forms.Button();
+         this.EditMacroButton = new System.Windows.Forms.Button();
          this.tabControl1.SuspendLayout();
          this.TextResults.SuspendLayout();
          this.BannedDirectories.SuspendLayout();
@@ -363,11 +364,22 @@
          this.MacroButton.UseVisualStyleBackColor = true;
          this.MacroButton.Click += new System.EventHandler(this.MacroButton_Click);
          // 
+         // EditMacroButton
+         // 
+         this.EditMacroButton.Location = new System.Drawing.Point(466, 147);
+         this.EditMacroButton.Name = "EditMacroButton";
+         this.EditMacroButton.Size = new System.Drawing.Size(75, 23);
+         this.EditMacroButton.TabIndex = 22;
+         this.EditMacroButton.Text = "See Macro";
+         this.EditMacroButton.UseVisualStyleBackColor = true;
+         this.EditMacroButton.Click += new System.EventHandler(this.EditMacroButton_Click);
+         // 
          // Form1
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(549, 629);
+         this.Controls.Add(this.EditMacroButton);
          this.Controls.Add(this.MacroButton);
          this.Controls.Add(this.PreviewReplaceButton);
          this.Controls.Add(this.statusStrip1);
@@ -437,6 +449,7 @@
         private System.Windows.Forms.Button ExpandAllButton;
         private System.Windows.Forms.Button PreviewReplaceButton;
         private System.Windows.Forms.Button MacroButton;
+        private System.Windows.Forms.Button EditMacroButton;
     }
 }
 
