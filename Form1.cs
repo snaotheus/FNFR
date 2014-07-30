@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace FNFR2
 {
@@ -20,10 +21,13 @@ namespace FNFR2
         public Form1()
         {
             InitializeComponent();
-            myset = new MacroSet();
-            myset.AddPair("Sample1", "Example1");
-            myset.AddPair("Sample2", "Example2");
-            myset.AddPair("Sample3", "Example3");
+
+           XmlReader reader = XmlReader.Create(Application.StartupPath + "\\mp.xml");
+           while(reader.Read() && (reader.NodeType != XmlNodeType.Element || reader.LocalName != MacroSet.XML_NODE_SET_LOCALNAME))
+           {
+              //reader.Read();
+           }
+           myset = MacroSet.FromXML(reader);
 
         }
 

@@ -6,6 +6,8 @@ using System.Xml;
 
 namespace FNFR2
 {
+
+
    public class MacroPair
    {
       public static string XML_NODE_PAIR_LOCALNAME = "MacroPair";
@@ -26,40 +28,36 @@ namespace FNFR2
          StringPair = new KeyValuePair<string, string>(FindString, ReplaceWithString);
       }
 
-      public MacroPair(XmlReader xreader)
+      /// <summary>
+      /// Assumes reader is on an appropriate MacroPair node. If not, creates empty pair.
+      /// Leaves the reader at the EndElement for the MacroPair.
+      /// </summary>
+      /// <param name="xreader">XmlReader pointing at a MacroPair Element</param>
+      public MacroPair(XmlReader reader)
       {
-         string ReplaceThisString = "";
-         string WithThisString = "";
-         xreader.MoveToElement(); // Advance to first child
-         xreader.Read(); // read the first child
-         string ThisProperty = xreader.LocalName;
-         xreader.Read();
-         string ThisValue = xreader.Value;
-         if (ThisProperty == XML_NODE_FIND_STRING_NAME)
+         string FindString = "";
+         string ReplacementString = "";
+
+         if (reader.NodeType != XmlNodeType.Element || reader.LocalName != XML_NODE_PAIR_LOCALNAME)
          {
-            ReplaceThisString = ThisValue;
-         }
-         else
-         {
-            WithThisString = ThisValue;
-         }
-         
-         xreader.MoveToElement();
-         xreader.Read();
-         xreader.Read();
-         ThisProperty = xreader.LocalName;
-         xreader.Read();
-         ThisValue = xreader.Value;
-         if (ThisProperty == XML_NODE_FIND_STRING_NAME)
-         {
-            ReplaceThisString = ThisValue;
-         }
-         else
-         {
-            WithThisString = ThisValue;
+            // do nothing -- reader was not set right
          }
 
-         StringPair = new KeyValuePair<string, string>(ReplaceThisString, WithThisString);
+         else
+         {
+            while (reader.Read() && reader.NodeType != XmlNodeType.EndElement && reader.LocalName != XML_NODE_PAIR_LOCALNAME)
+            {
+               if (reader.LocalName == XML_NODE_FIND_STRING_NAME)
+               {
+                  FindString = reader.ReadString();
+               }
+               if (reader.LocalName == XML_NODE_REPLACEMENT_STRING_NAME)
+               {
+                  ReplacementString = reader.ReadString();
+               }
+            }
+         }
+         StringPair = new KeyValuePair<string, string>(FindString, ReplacementString);
       }
 
       public void ToXML(XmlWriter xwriter)

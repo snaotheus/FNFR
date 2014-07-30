@@ -30,6 +30,17 @@ namespace FNFR2
          return true;
       }
 
+      public bool AddPair(MacroPair NewPair)
+      {
+         if (DataStore.ContainsValue(NewPair))
+         {
+            return false;
+         }
+
+         DataStore.Add(DataStore.Count + 1, NewPair);
+         return true;
+      }
+
       public MacroPair GetPair(int i)
       {
          if (i > DataStore.Count || i <= 0)
@@ -38,6 +49,26 @@ namespace FNFR2
          }
 
          return DataStore[i];
+      }
+
+      /// <summary>
+      /// Assumes reader is pointing at a MacroSet node. Returns with reader pointing at the MacroSet end node.
+      /// </summary>
+      /// <param name="reader"></param>
+      /// <returns>MacroSet containing all the MacroPairs from the XML node.</returns>
+      public static MacroSet FromXML(XmlReader reader)
+      {
+         MacroSet newset = new MacroSet();
+         if (reader.NodeType != XmlNodeType.Element || reader.LocalName != XML_NODE_SET_LOCALNAME)
+            return newset;
+
+         while (reader.Read() && reader.NodeType != XmlNodeType.EndElement && reader.LocalName != XML_NODE_SET_LOCALNAME)
+         {
+            if (reader.NodeType == XmlNodeType.Element && reader.LocalName == MacroPair.XML_NODE_PAIR_LOCALNAME)
+               newset.AddPair(new MacroPair(reader));
+         }
+
+         return newset;
       }
 
       public void ToXML(XmlWriter xw)
@@ -50,6 +81,20 @@ namespace FNFR2
          }
          xw.WriteEndElement();
 
+      }
+
+      public override string ToString()
+      {
+         string retstring = "Macroset contains: \r\n";
+         int i = 0;
+
+         foreach (KeyValuePair<int,MacroPair> kvp in DataStore)
+         {
+            i++;
+            retstring += "   " + i + ". " + kvp.Value.ToString();
+         }
+
+         return retstring;
       }
    }
 }
