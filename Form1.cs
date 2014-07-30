@@ -28,7 +28,7 @@ namespace FNFR2
               //reader.Read();
            }
            myset = MacroSet.FromXML(reader);
-
+           reader.Close();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
