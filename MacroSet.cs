@@ -85,16 +85,33 @@ namespace FNFR2
 
       public override string ToString()
       {
-         string retstring = "Macroset contains: ";
-         int i = 0;
+         return ToString(true);
+      }
 
-         foreach (KeyValuePair<int,MacroPair> kvp in DataStore)
+      public string ToString(bool pretty)
+      {
+         string retstring = "";
+         if (pretty)
          {
-            i++;
-            retstring += "\r\n   " + i + ". " + kvp.Value.ToString();
-         }
+            retstring = "Macroset contains: ";
+            int i = 0;
 
-         return retstring;
+            foreach (KeyValuePair<int, MacroPair> kvp in DataStore)
+            {
+               i++;
+               retstring += "\r\n   " + i + ". " + kvp.Value.ToString();
+            }
+
+         }
+         else
+         {
+            retstring = "";
+            foreach (KeyValuePair<int, MacroPair> kvp in DataStore)
+            {
+               retstring += kvp.Value.ToString(":") + "\r\n";
+            }
+         }
+            return retstring;
       }
    }
 }

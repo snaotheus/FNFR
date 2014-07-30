@@ -22,7 +22,7 @@ namespace FNFR2
          : this()
       {
          dlgMacroSet = DialogMacroSet;
-         PairsTextBox.Text = dlgMacroSet.ToString();
+         PairsTextBox.Text = dlgMacroSet.ToString(false);
       }
 
       private void OKButton_Click(object sender, EventArgs e)
