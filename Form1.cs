@@ -240,7 +240,8 @@ namespace FNFR2
 
         private void EditMacroButton_Click(object sender, EventArgs e)
         {
-           MessageBox.Show(myset.ToString());
+           MacroForm mf = new MacroForm(myset);
+           mf.ShowDialog();
         }
 
 
