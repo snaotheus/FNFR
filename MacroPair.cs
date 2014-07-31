@@ -87,5 +87,23 @@ namespace FNFR2
       {
          return xreader.LocalName == XML_NODE_PAIR_LOCALNAME;
       }
+
+      public static MacroPair FromString(string pair, string separator)
+      {
+         string[] separators = new string[1];
+         separators[0] = separator;
+         string[] strings = pair.Split(separators, StringSplitOptions.None);
+         if (strings.Length == 2)
+         {
+            return new MacroPair(strings[0], strings[1]);
+         }
+
+         if (strings.Length == 1)
+         {
+            return new MacroPair(strings[0], "");
+         }
+
+         return new MacroPair();
+      }
    }
 }

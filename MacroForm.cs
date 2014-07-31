@@ -27,6 +27,7 @@ namespace FNFR2
 
       private void OKButton_Click(object sender, EventArgs e)
       {
+         dlgMacroSet = MacroSet.FromString(PairsTextBox.Text, "\r\n", ":");
          this.Close();
       }
 

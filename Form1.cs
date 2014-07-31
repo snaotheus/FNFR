@@ -242,6 +242,7 @@ namespace FNFR2
         {
            MacroForm mf = new MacroForm(myset);
            mf.ShowDialog();
+           myset = mf.dlgMacroSet;
         }
 
 

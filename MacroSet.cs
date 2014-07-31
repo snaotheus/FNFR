@@ -113,5 +113,22 @@ namespace FNFR2
          }
             return retstring;
       }
+
+      public static MacroSet FromString(string source, string pairseparator, string wordseparator)
+      {
+         MacroSet newset = new MacroSet();
+
+         string[] pairseparators = new string[1];
+         pairseparators[0] = pairseparator;
+
+         string[] pairs = source.Split(pairseparators, StringSplitOptions.RemoveEmptyEntries);
+
+         foreach (string s in pairs)
+         {
+            newset.AddPair(MacroPair.FromString(s, wordseparator));
+         }
+
+         return newset;
+      }
    }
 }
