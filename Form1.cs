@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using System.IO;
 
 namespace FNFR2
 {
@@ -22,13 +23,23 @@ namespace FNFR2
         {
             InitializeComponent();
 
-           XmlReader reader = XmlReader.Create(Application.StartupPath + "\\mp.xml");
-           while(reader.Read() && (reader.NodeType != XmlNodeType.Element || reader.LocalName != MacroSet.XML_NODE_SET_LOCALNAME))
-           {
-              //reader.Read();
-           }
-           myset = MacroSet.FromXML(reader);
-           reader.Close();
+            string DefaultFileName = Application.StartupPath + "\\mp.xml";
+            FileInfo defaultfile = new FileInfo(DefaultFileName);
+
+            if (defaultfile.Exists)
+            {
+               XmlReader reader = XmlReader.Create(DefaultFileName);
+               while (reader.Read() && (reader.NodeType != XmlNodeType.Element || reader.LocalName != MacroSet.XML_NODE_SET_LOCALNAME))
+               {
+                  //reader.Read();
+               }
+               myset = MacroSet.FromXML(reader);
+               reader.Close();
+            }
+            else
+            {
+               myset = new MacroSet();
+            }
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
