@@ -11,13 +11,13 @@ namespace FNFR2
         public MyStringCollection() { }
         public string ToString()
         {
-            string AllToString = "";
+            StringBuilder AllToString = new StringBuilder();
             foreach (string ThisString in this)
             {
-                AllToString += ThisString + "\n";
+                AllToString.AppendLine(ThisString);
             }
-            if (AllToString.Length > 0) AllToString = AllToString.Remove(AllToString.Length - 1);
-            return AllToString;
+            
+            return AllToString.ToString();
         }
 
     }
