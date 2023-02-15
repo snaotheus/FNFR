@@ -5,3 +5,4 @@ bin/Debug/FNFR2.vshost.exe.manifest
 bin/Release/
 obj/
 /.vs/
+/bin/Debug/net7.0-windows
