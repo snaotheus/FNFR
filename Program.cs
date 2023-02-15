@@ -21,6 +21,7 @@ namespace FNFR2
             Application.ApplicationExit += new EventHandler(OnApplicationExit);
 
             Application.EnableVisualStyles();
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.SetCompatibleTextRenderingDefault(false);
             myform = new Form1();
             Application.Run(myform);
